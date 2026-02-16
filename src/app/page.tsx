@@ -33,6 +33,14 @@ const webServices = [
   { name: 'Business System', price: 'Custom Quote', description: 'Complex business systems and applications tailored to your needs', icon: CodeXml },
 ]
 
+export const metadata = {
+  title: 'Atlas Bali Beach Club - Tickets, VVIP & Events',
+  description: 'Official information for Atlas Bali Beach Club. Book tickets, VIP tables, and check event schedules. Your guide to the #1 beach club in Bali.',
+  alternates: {
+    canonical: 'https://editions-atlas.com',
+  },
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
@@ -65,7 +73,7 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-md">
             Beach, Music, Events, and Premium Experiences in Bali. Your gateway to Indonesia's most exclusive lifestyle destination.
           </p>
 
@@ -271,8 +279,8 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="text-sm text-blue-600 font-medium hover:text-blue-700 flex items-center gap-1"
                   >
-                    Learn More
-                    <ArrowRight className="w-4 h-4" />
+                    Learn more about {service.name}
+                    <ArrowRight className="w-4 h-4 ml-1" />
                   </a>
                 </div>
               </div>
