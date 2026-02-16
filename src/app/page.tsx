@@ -1,109 +1,42 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
-import { ArrowRight, ExternalLink, Menu, X, Shield, FileCheck, Clock, ChevronDown, Sun, Music, Sparkles, Calendar, Building2, Users, Globe, FileText, Briefcase, Monitor, Zap, CodeXml } from 'lucide-react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { AtlasTicketForm } from '@/components/AtlasTicketForm'
+import { ArrowRight, ExternalLink, Shield, FileCheck, Clock, Sun, Music, Sparkles, Calendar, Building2, Users, Globe, FileText, Briefcase, Monitor, Zap, CodeXml } from 'lucide-react'
+import { Navbar } from '@/components/layout/Navbar'
+import { HeroActions } from '@/components/home/HeroActions'
+import { Footer } from '@/components/layout/Footer'
+
+// Static Data
+const visaServices = [
+  { id: 1, name: 'B1 Visa on Arrival / Extension', description: 'Tourist visa for short stays with extension options', popular: true, url: 'https://indonesianvisas.com/services/B1' },
+  { id: 2, name: 'C1 Visit Visa', description: 'Single entry visa for tourism or family visits', url: 'https://indonesianvisas.com' },
+  { id: 3, name: 'C2 Business Visa', description: 'For business meetings and commercial activities', url: 'https://indonesianvisas.com' },
+  { id: 4, name: 'C12 Pre-Investment Visa', description: 'For exploring investment opportunities', url: 'https://indonesianvisas.com' },
+  { id: 5, name: 'D1 Tourist Visa', description: 'Extended tourist visa for longer stays', url: 'https://indonesianvisas.com' },
+  { id: 6, name: 'D2 Business Visa', description: 'Multiple entry business visa', url: 'https://indonesianvisas.com' },
+  { id: 7, name: 'D12 Pre-Investment Visa', description: 'Long-term investment exploration visa', url: 'https://indonesianvisas.com' },
+  { id: 8, name: 'E33G Digital Nomad Visa', description: 'Work remotely from Indonesia legally', popular: true, url: 'https://indonesianvisas.com' },
+  { id: 9, name: 'E28A Investment KITAS', description: 'Residence permit for investors', popular: true, url: 'https://indonesianvisas.com' },
+  { id: 10, name: 'Custom Visa Services', description: 'Tailored solutions for unique situations', url: 'https://indonesianvisas.com' },
+]
+
+const businessServices = [
+  { id: 1, name: 'Local PT Company', description: 'Indonesian-owned company formation with local partner arrangements', icon: Users },
+  { id: 2, name: 'Virtual Office', description: 'Professional business address and mail handling services', icon: Globe },
+  { id: 3, name: 'NIB & OSS Licensing', description: 'Business identification and online single submission registration', icon: FileText },
+  { id: 4, name: 'KBLI Registration', description: 'Business classification code registration and compliance', icon: Briefcase },
+  { id: 5, name: 'Tax & Compliance', description: 'Ongoing tax filing and regulatory compliance services', icon: Shield },
+]
+
+const webServices = [
+  { name: 'Corporate Website', price: 'From $500', description: 'Professional websites that establish credibility and showcase your business', icon: Monitor },
+  { name: 'Landing Page', price: 'From $300', description: 'High-converting pages designed to capture leads and drive action', icon: Zap },
+  { name: 'Business System', price: 'Custom Quote', description: 'Complex business systems and applications tailored to your needs', icon: CodeXml },
+]
 
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      setMobileMenuOpen(false)
-    }
-  }
-
-  const visaServices = [
-    { id: 1, name: 'B1 Visa on Arrival / Extension', description: 'Tourist visa for short stays with extension options', popular: true, url: 'https://indonesianvisas.com/services/B1' },
-    { id: 2, name: 'C1 Visit Visa', description: 'Single entry visa for tourism or family visits', url: 'https://indonesianvisas.com' },
-    { id: 3, name: 'C2 Business Visa', description: 'For business meetings and commercial activities', url: 'https://indonesianvisas.com' },
-    { id: 4, name: 'C12 Pre-Investment Visa', description: 'For exploring investment opportunities', url: 'https://indonesianvisas.com' },
-    { id: 5, name: 'D1 Tourist Visa', description: 'Extended tourist visa for longer stays', url: 'https://indonesianvisas.com' },
-    { id: 6, name: 'D2 Business Visa', description: 'Multiple entry business visa', url: 'https://indonesianvisas.com' },
-    { id: 7, name: 'D12 Pre-Investment Visa', description: 'Long-term investment exploration visa', url: 'https://indonesianvisas.com' },
-    { id: 8, name: 'E33G Digital Nomad Visa', description: 'Work remotely from Indonesia legally', popular: true, url: 'https://indonesianvisas.com' },
-    { id: 9, name: 'E28A Investment KITAS', description: 'Residence permit for investors', popular: true, url: 'https://indonesianvisas.com' },
-    { id: 10, name: 'Custom Visa Services', description: 'Tailored solutions for unique situations', url: 'https://indonesianvisas.com' },
-  ]
-
-  const businessServices = [
-    { id: 1, name: 'Local PT Company', description: 'Indonesian-owned company formation with local partner arrangements', icon: Users },
-    { id: 2, name: 'Virtual Office', description: 'Professional business address and mail handling services', icon: Globe },
-    { id: 3, name: 'NIB & OSS Licensing', description: 'Business identification and online single submission registration', icon: FileText },
-    { id: 4, name: 'KBLI Registration', description: 'Business classification code registration and compliance', icon: Briefcase },
-    { id: 5, name: 'Tax & Compliance', description: 'Ongoing tax filing and regulatory compliance services', icon: Shield },
-  ]
-
-  const webServices = [
-    { name: 'Corporate Website', price: 'From $500', description: 'Professional websites that establish credibility and showcase your business', icon: Monitor },
-    { name: 'Landing Page', price: 'From $300', description: 'High-converting pages designed to capture leads and drive action', icon: Zap },
-    { name: 'Business System', price: 'Custom Quote', description: 'Complex business systems and applications tailored to your needs', icon: CodeXml },
-  ]
-
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <a href="#" className="flex items-center gap-3">
-              <div className={`font-semibold text-xl tracking-tight transition-colors duration-300 ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
-                <span className="font-light">EDITIONS</span>
-                <span className="font-bold ml-1">ATLAS</span>
-              </div>
-            </a>
-
-            <div className="hidden md:flex items-center">
-              <a
-                href="https://wa.me/6285727041992"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-sm font-semibold rounded-full hover:from-amber-600 hover:to-amber-700 transition-all duration-300 shadow-lg shadow-amber-500/25"
-              >
-                Contact Us
-              </a>
-            </div>
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`md:hidden p-2 rounded-lg transition-colors ${isScrolled ? 'text-slate-900' : 'text-white'}`}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white shadow-lg border-t">
-            <div className="px-6 py-4">
-              <a
-                href="https://wa.me/6285727041992"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-full"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact Us
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -114,7 +47,6 @@ export default function Home() {
             fill
             className="object-cover"
             priority
-            quality={90}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/50 to-slate-900/80" />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/30 to-transparent" />
@@ -137,33 +69,7 @@ export default function Home() {
             Beach, Music, Events, and Premium Experiences in Bali. Your gateway to Indonesia's most exclusive lifestyle destination.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Dialog>
-              <DialogTrigger asChild>
-                <button
-                  className="group px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-full hover:from-amber-600 hover:to-amber-700 transition-all duration-300 shadow-2xl shadow-amber-500/30 flex items-center gap-2"
-                >
-                  Explore Atlas Bali
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md bg-white">
-                <DialogHeader>
-                  <DialogTitle>Option Ticket Atlas Bali Beachclub</DialogTitle>
-                  <DialogDescription>
-                    Fill out the form below to inquire about tickets and VIP reservations.
-                  </DialogDescription>
-                </DialogHeader>
-                <AtlasTicketForm />
-              </DialogContent>
-            </Dialog>
-            <button
-              onClick={() => scrollToSection('visa-services')}
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-full hover:bg-white/20 transition-all duration-300"
-            >
-              Visa & Business Services
-            </button>
-          </div>
+          <HeroActions />
 
           <div className="mt-16 pt-8 border-t border-white/10">
             <p className="text-white/50 text-sm mb-4">Trusted Services</p>
@@ -176,17 +82,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <button
-          onClick={() => scrollToSection('atlas-bali')}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 hover:text-white transition-colors animate-bounce"
-        >
-          <ChevronDown size={32} />
-        </button>
       </section>
 
       {/* Atlas Bali Section */}
-      <section id="atlas-bali" className="py-24 lg:py-32 bg-white">
+      <section id="atlas-bali" className="py-24 lg:py-32 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="inline-block px-4 py-1.5 bg-amber-50 border border-amber-200 rounded-full text-amber-700 text-sm font-medium tracking-wider uppercase mb-4">
@@ -322,7 +221,7 @@ export default function Home() {
       </section>
 
       {/* Visa Services Section */}
-      <section id="visa-services" className="py-24 lg:py-32 bg-slate-50">
+      <section id="visa-services" className="py-24 lg:py-32 bg-slate-50 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="inline-block px-4 py-1.5 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-sm font-medium tracking-wider uppercase mb-4">
@@ -395,7 +294,7 @@ export default function Home() {
       </section>
 
       {/* Company Formation Section */}
-      <section id="company-formation" className="py-24 lg:py-32 bg-white">
+      <section id="company-formation" className="py-24 lg:py-32 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="inline-block px-4 py-1.5 bg-emerald-50 border border-emerald-200 rounded-full text-emerald-700 text-sm font-medium tracking-wider uppercase mb-4">
@@ -498,7 +397,7 @@ export default function Home() {
       </section>
 
       {/* Web Design Section */}
-      <section id="web-design" className="py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <section id="web-design" className="py-24 lg:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -578,75 +477,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-slate-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div className="md:col-span-2">
-              <div className="font-semibold text-xl tracking-tight mb-4">
-                <span className="font-light">EDITIONS</span>
-                <span className="font-bold ml-1">ATLAS</span>
-              </div>
-              <p className="text-slate-400 mb-6 max-w-md">
-                Your premier gateway to Bali's lifestyle and comprehensive business services in Indonesia. Discover exclusive experiences, streamline your visa applications, and establish your company with expert guidance.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4">Quick Links</h4>
-              <ul className="space-y-3">
-                <li>
-                  <button onClick={() => scrollToSection('atlas-bali')} className="text-sm text-slate-400 hover:text-white transition-colors">
-                    Atlas Bali
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection('visa-services')} className="text-sm text-slate-400 hover:text-white transition-colors">
-                    Visa Services
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection('company-formation')} className="text-sm text-slate-400 hover:text-white transition-colors">
-                    Company Formation
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => scrollToSection('web-design')} className="text-sm text-slate-400 hover:text-white transition-colors">
-                    Web Design
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4">Legal</h4>
-              <ul className="space-y-3">
-                <li>
-                  <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors">
-                    Terms & Conditions
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-sm text-slate-400 hover:text-white transition-colors">
-                    Disclaimer
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="pt-8 border-t border-slate-800">
-            <p className="text-slate-500 text-xs">
-              <strong>Disclaimer:</strong> This website is not affiliated with, endorsed by, or connected to Atlas Bali or any official Atlas entities. All links to external websites are provided for informational purposes only. We do not claim ownership or representation of any third-party services mentioned.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Domain Links Bar */}
       <div className="bg-slate-950 py-4">
@@ -661,6 +492,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white transition-colors"
+                aria-label="Indonesian Visas"
               >
                 indonesianvisas.com
               </a>
@@ -670,6 +502,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white transition-colors"
+                aria-label="Bali Help"
               >
                 balihelp.id
               </a>
@@ -679,6 +512,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-slate-400 hover:text-white transition-colors"
+                aria-label="Indo Design"
               >
                 indodesign.website
               </a>

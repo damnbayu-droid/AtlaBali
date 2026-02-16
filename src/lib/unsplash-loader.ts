@@ -1,0 +1,14 @@
+'use client'
+
+import { ImageLoaderProps } from 'next/image'
+
+export default function unsplashLoader({ src, width, quality }: ImageLoaderProps) {
+    const url = new URL(src)
+    url.searchParams.set('auto', 'format')
+    url.searchParams.set('fit', 'max')
+    url.searchParams.set('w', width.toString())
+    if (quality) {
+        url.searchParams.set('q', quality.toString())
+    }
+    return url.href
+}
