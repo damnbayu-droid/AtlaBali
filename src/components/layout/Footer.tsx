@@ -1,15 +1,6 @@
-'use client'
-
 import Link from 'next/link'
 
 export function Footer() {
-    const scrollToSection = (sectionId: string) => {
-        const element = document.getElementById(sectionId)
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
-        }
-    }
-
     return (
         <footer className="bg-slate-900 text-white py-16">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -28,24 +19,24 @@ export function Footer() {
                         <h4 className="font-semibold text-white mb-4">Quick Links</h4>
                         <ul className="space-y-3">
                             <li>
-                                <button onClick={() => scrollToSection('atlas-bali')} className="text-sm text-slate-400 hover:text-white transition-colors">
+                                <Link href="/#atlas-bali" className="text-sm text-slate-400 hover:text-white transition-colors">
                                     Atlas Bali
-                                </button>
+                                </Link>
                             </li>
                             <li>
-                                <button onClick={() => scrollToSection('visa-services')} className="text-sm text-slate-400 hover:text-white transition-colors">
+                                <Link href="/#visa-services" className="text-sm text-slate-400 hover:text-white transition-colors">
                                     Visa Services
-                                </button>
+                                </Link>
                             </li>
                             <li>
-                                <button onClick={() => scrollToSection('company-formation')} className="text-sm text-slate-400 hover:text-white transition-colors">
+                                <Link href="/#company-formation" className="text-sm text-slate-400 hover:text-white transition-colors">
                                     Company Formation
-                                </button>
+                                </Link>
                             </li>
                             <li>
-                                <button onClick={() => scrollToSection('web-design')} className="text-sm text-slate-400 hover:text-white transition-colors">
+                                <Link href="/#web-design" className="text-sm text-slate-400 hover:text-white transition-colors">
                                     Web Design
-                                </button>
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -67,6 +58,11 @@ export function Footer() {
                                 <Link href="/disclaimer" className="text-sm text-slate-400 hover:text-white transition-colors">
                                     Disclaimer
                                 </Link>
+                            </li>
+                            <li className="pt-4 mt-4 border-t border-slate-800">
+                                <a href="mailto:contact@editions-atlas.com" className="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-2">
+                                    contact@editions-atlas.com
+                                </a>
                             </li>
                         </ul>
                     </div>

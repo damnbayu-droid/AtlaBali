@@ -82,11 +82,11 @@ export default function Home() {
           <div className="mt-16 pt-8 border-t border-white/10">
             <p className="text-white/50 text-sm mb-4">Trusted Services</p>
             <div className="flex flex-wrap items-center justify-center gap-8 text-white/70">
-              <span className="text-sm font-medium">Indonesian Visas</span>
+              <Link href="/#visa-services" className="text-sm font-medium hover:text-white transition-colors">Indonesian Visas</Link>
               <span className="w-1 h-1 bg-white/30 rounded-full hidden sm:block" />
-              <span className="text-sm font-medium">Company Formation</span>
+              <Link href="/#company-formation" className="text-sm font-medium hover:text-white transition-colors">Company Formation</Link>
               <span className="w-1 h-1 bg-white/30 rounded-full hidden sm:block" />
-              <span className="text-sm font-medium">Web Development</span>
+              <Link href="/#web-design" className="text-sm font-medium hover:text-white transition-colors">Web Development</Link>
             </div>
           </div>
         </div>
