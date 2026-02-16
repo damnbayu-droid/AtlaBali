@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://editions-atlas.com'),
   title: {
     default: "Editions Atlas - Atlas Bali Beach Club & Visa Services",
     template: "%s | Editions Atlas"
